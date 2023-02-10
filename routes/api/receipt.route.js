@@ -1,5 +1,5 @@
 const express = require('express');
-const receiptController = require('../../controllers/receiptController');
+const receiptController = require('../../controllers/receipt.controller');
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.route('/:id')
     .get(receiptController.getReceipt)
 ;
 
-router.param('id')
+router.param('id', receiptController.fetchReceiptById);
 
 module.exports = router;
  
