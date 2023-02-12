@@ -87,9 +87,18 @@ const receiptSchema = new Schema({
         type: String,
         required: true
     },
-    service: [serviceSchema],
-    additional: [additionalSchema],
-    prescriptionSchema: [prescriptionSchema],
+    service: {
+        type: [serviceSchema],
+        required: true
+    },
+    additional: {
+        type: [additionalSchema],
+        required: true
+    },
+    prescription: {
+        type: [prescriptionSchema],
+        required: true
+    },
 });
 
 module.exports = mongoose.model('Receipt', receiptSchema);

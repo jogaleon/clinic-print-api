@@ -9,8 +9,6 @@ const cors = require('cors');
 //Function imports
 const connectDB = require('./config/connectDB');
 
-
-
 //Init
 const app = express();
 connectDB();
@@ -19,12 +17,12 @@ mongoose.connection.once('open', () => {
     app.listen(process.env.PORT, () => {
         console.log(`Server running on port ${process.env.PORT}`);
     });
-})
+});
 
 //Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//Router
+//Routes
 app.use('/api', require('./routes/api/receipt.route'));
