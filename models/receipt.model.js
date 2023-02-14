@@ -87,6 +87,10 @@ const receiptSchema = new Schema({
         type: String,
         required: true
     },
+    dateCreated: {
+        type: Date,
+        required: true,
+    },
     service: {
         type: [serviceSchema],
         required: true
