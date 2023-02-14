@@ -10,7 +10,7 @@ const cors = require('cors');
 const connectDB = require('./config/connectDB');
 
 //Init
-const app = express();
+const app = express();  
 connectDB();
 mongoose.connection.once('open', () => {
     console.log("Successfully connected to database.");
