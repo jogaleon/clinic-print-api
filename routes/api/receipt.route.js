@@ -10,7 +10,7 @@ router.route('/')
 ;
 
 router.route('/:id')
-    .put(receiptController.updateReceipt)
+    .patch(receiptController.updateReceipt)
     .delete(receiptController.deleteReceipt)
     .get(receiptController.getReceipt)
 ;

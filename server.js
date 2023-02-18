@@ -25,4 +25,4 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Routes
-app.use('/api', require('./routes/api/receipt.route'));
+app.use('/api/receipt', require('./routes/api/receipt.route'));
