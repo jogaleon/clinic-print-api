@@ -8,6 +8,7 @@ const cors = require('cors');
 
 //Function imports
 const connectDB = require('./config/connectDB');
+const logRequest = require('./middleware/logRequest');
 
 //Init
 const app = express();  
@@ -25,4 +26,5 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Routes
+app.use(logRequest);
 app.use('/api/receipt', require('./routes/api/receipt.route'));

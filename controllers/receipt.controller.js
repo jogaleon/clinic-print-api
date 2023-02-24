@@ -6,8 +6,8 @@ const getAllReceipts = async (req, res) => {
         const allReceipts = await Receipt.find();
         res.status(200).send(allReceipts);
     } catch (err) {
-        res.sendStatus(500);
         console.error(err);
+        res.status(500).json({ message: "Unable to get all receipts" });
     }
 }
 
@@ -23,8 +23,8 @@ const addReceipt = async (req, res) => {
         });
         res.status(200).send(newReceipt);
     } catch (err) {
-        res.status(500).send(err);
         console.error(err);
+        res.status(500).json({ message: "Unable to add the receipt." });
     }
 }
 
@@ -33,8 +33,8 @@ const deleteAllReceipts = async (req, res) => {
         const receipts = await Receipt.deleteMany();
         res.status(200).send(receipts);
     } catch (err) {
-        res.sendStatus(500);
         console.error(err);
+        res.status(500).json({ message: "Unable to delete all receipts." });
     }
 }
 
@@ -45,8 +45,8 @@ const updateReceipt = async (req, res) => {
         if (!updatedReceipt) return res.status(404).json({ message: "No receipt with provided ID found." });
         res.status(200).send(updatedReceipt);
     } catch(err) {
-        res.sendStatus(500);
         console.error(err);
+        res.send(500).json({ message: "Unable to update the receipt." });
     }
 }
 
@@ -57,7 +57,7 @@ const deleteReceipt = async (req, res) => {
         res.status(200).send(deletedReceipt);
         
     } catch(err) {
-        res.sendStatus(500);
+        res.status(500).json({ message: "Unable to delete the receipt." });
         console.error(err);
     }
 }
@@ -74,7 +74,7 @@ const getReceipt = async (req, res) => {
 }
 
 const validateId = (req, res, next, id) => {
-    if (!mongoose.isValidObjectId(id)) return res.status(400).json({ message: "Not a valid receipt ID" });
+    if (!mongoose.isValidObjectId(id)) return res.status(400).json({ message: "Not a valid receipt ID." });
     next();
 }
 
