@@ -68,7 +68,25 @@ const getReceipt = async (req, res) => {
         if (!foundReceipt) return res.status(404).json({ message: "No receipt with provided ID found." });
         res.status(200).send(foundReceipt);
     } catch(err) {
-        res.sendStatus(500);
+        res.status(500).json({ message: "Unable to find the receipt." });
+        console.error(err);
+    }
+}
+
+const searchReceipts = async (req, res) => {
+    const { createdAt } = req.body;
+    console.log(createdAt)
+    const dateStart = new Date(createdAt);
+    const dateEnd = new Date(createdAt);
+    dateEnd.setDate(dateEnd.getDate() + 1);
+    try {
+        const foundReceipts = await Receipt
+            .find({ "createdAt": { "$gte": dateStart, "$lt": dateEnd } })
+            .sort( { "createdAt": "asc" })
+        ;   
+        res.status(200).send(foundReceipts);
+    } catch (err) {
+        res.status(500).json({ message: "Unable to search receipts." });
         console.error(err);
     }
 }
@@ -86,5 +104,6 @@ module.exports = {
     updateReceipt,
     deleteReceipt,
     getReceipt,
+    searchReceipts,
     validateId
 }

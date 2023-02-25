@@ -12,11 +12,11 @@ const serviceSchema = new Schema({
     },
     name: {
         type: String,
-        required: true
+        default: ""
     },
     cost: {
         type: String,
-        required: true
+        default: ""
     },
 });
 
@@ -31,19 +31,19 @@ const additionalSchema = new Schema({
     },
     name: {
         type: String,
-        required: true
+        default: ""
     },
     dosage: {
         type: String,
-        required: true
+        default: ""
     },
     quantity: {
         type: String,
-        required: true
+        default: ""
     },
     cost: {
         type: String,
-        required: true
+        default: ""
     },    
 });
 
@@ -58,19 +58,19 @@ const prescriptionSchema = new Schema({
     },
     name: {
         type: String,
-        required: true
+        default: ""
     },
     dosage: {
         type: String,
-        required: true
+        default: ""
     },
     quantity: {
         type: String,
-        required: true
+        default: ""
     },
     cost: {
         type: String,
-        required: true
+        default: ""
     },
     include: {
         type: Boolean,
@@ -81,11 +81,11 @@ const prescriptionSchema = new Schema({
 const receiptSchema = new Schema({
     name: {
         type: String,
-        required: true
+        default: ""
     },
     number: {
         type: String,
-        required: true
+        default: ""
     },
     service: {
         type: [serviceSchema],
@@ -102,11 +102,3 @@ const receiptSchema = new Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.model('Receipt', receiptSchema);
-
-// id: string,
-// type: S
-// name: string,
-// dosage: string,
-// quantity: string,
-// cost: string,
-// include: boolean

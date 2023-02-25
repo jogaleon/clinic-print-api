@@ -9,6 +9,10 @@ router.route('/')
     .delete(receiptController.deleteAllReceipts);
 ;
 
+router.route('/search')
+    .post(receiptController.searchReceipts)
+;
+
 router.route('/:id')
     .patch(receiptController.updateReceipt)
     .delete(receiptController.deleteReceipt)
