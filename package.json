@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "migrate:cost": "node scripts/migrate-cost-to-cents.js",
+    "migrate:remove-cost": "node scripts/remove-legacy-cost.js",
+    "recover:cost": "node scripts/recover-cost-in-cents-from-source.js"
   },
   "repository": {
     "type": "git",

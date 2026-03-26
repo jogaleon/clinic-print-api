@@ -14,10 +14,11 @@ const serviceSchema = new Schema({
         type: String,
         default: ""
     },
-    cost: {
-        type: String,
-        default: ""
-    },
+    costInCents: {
+        type: Number,
+        required: true,
+        default: 0
+    }
 });
 
 const additionalSchema = new Schema({
@@ -38,13 +39,15 @@ const additionalSchema = new Schema({
         default: ""
     },
     quantity: {
-        type: String,
-        default: ""
+        type: Number,
+        required: true,
+        default: 0
     },
-    cost: {
-        type: String,
-        default: ""
-    },    
+    costInCents: {
+        type: Number,
+        required: true,
+        default: 0
+    }
 });
 
 const prescriptionSchema = new Schema({
@@ -65,12 +68,14 @@ const prescriptionSchema = new Schema({
         default: ""
     },
     quantity: {
-        type: String,
-        default: ""
+        type: Number,
+        required: true,
+        default: 0
     },
-    cost: {
-        type: String,
-        default: ""
+    costInCents: {
+        type: Number,
+        required: true,
+        default: 0
     },
     include: {
         type: Boolean,
@@ -99,6 +104,34 @@ const receiptSchema = new Schema({
         type: [prescriptionSchema],
         required: true
     },
+    discount: {
+        type: {
+            type: String,
+            default: "None"
+        },
+        percentage: {
+            type: Number,
+            required: true,
+            default: 0
+        }
+    },
+    discountApply: {
+        service: {
+            type: Boolean,
+            required: true,
+            default: true
+        },
+        additional: {
+            type: Boolean,
+            required: true,
+            default: true
+        },
+        prescription: {
+            type: Boolean,
+            required: true,
+            default: true
+        }
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Receipt', receiptSchema);
