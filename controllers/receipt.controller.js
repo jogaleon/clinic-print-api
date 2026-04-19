@@ -12,14 +12,28 @@ const getAllReceipts = async (req, res) => {
 }
 
 const addReceipt = async (req, res) => {
-    const { name, number, service, additional, prescription } = req.body;
+    const {
+        name,
+        number,
+        doctor,
+        transactionType,
+        service,
+        additional,
+        prescription,
+        discount,
+        discountApply,
+    } = req.body;
     try {
         const newReceipt = await Receipt.create({
             name,
             number,
+            doctor,
+            transactionType,
             service,
             additional,
-            prescription
+            prescription,
+            discount,
+            discountApply,
         });
         res.status(200).send(newReceipt);
     } catch (err) {

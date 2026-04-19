@@ -18,6 +18,25 @@ const serviceSchema = new Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    serviceCategory: {
+        type: String,
+        enum: ['professional_fee', 'clinic', 'laboratory'],
+        default: 'clinic'
+    },
+    labLineKind: {
+        type: String,
+        enum: ['test', 'package'],
+        default: 'test'
+    },
+    labPackageConcession: {
+        type: String,
+        enum: ['none', 'member', 'senior_pwd'],
+        default: 'none'
+    },
+    excludeFromSectionPercent: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -47,6 +66,11 @@ const additionalSchema = new Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    additionalCategory: {
+        type: String,
+        enum: ['service_materials', 'additional_medicine'],
+        default: 'additional_medicine'
     }
 });
 
@@ -92,6 +116,15 @@ const receiptSchema = new Schema({
         type: String,
         default: ""
     },
+    doctor: {
+        type: String,
+        default: ""
+    },
+    transactionType: {
+        type: String,
+        enum: ['general', 'pharmacy', 'laboratory'],
+        default: 'general'
+    },
     service: {
         type: [serviceSchema],
         required: true
@@ -113,20 +146,39 @@ const receiptSchema = new Schema({
             type: Number,
             required: true,
             default: 0
+        },
+        packageFlatFeeCents: {
+            type: Number,
+            default: 0
         }
     },
     discountApply: {
-        service: {
+        professionalFee: {
             type: Boolean,
             required: true,
             default: true
         },
-        additional: {
+        clinicServices: {
             type: Boolean,
             required: true,
             default: true
         },
-        prescription: {
+        laboratoryServices: {
+            type: Boolean,
+            required: true,
+            default: true
+        },
+        serviceMaterials: {
+            type: Boolean,
+            required: true,
+            default: true
+        },
+        additionalMeds: {
+            type: Boolean,
+            required: true,
+            default: true
+        },
+        prescriptionMeds: {
             type: Boolean,
             required: true,
             default: true
